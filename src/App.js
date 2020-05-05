@@ -12,14 +12,19 @@ import TodoList from "./components/TodoList";
 // __________ store given array of objects ________ //
 const initialList = [
   {
-    task: "Organize Garage",
+    task: "Clean Theo's poop-igloo",
     id: 1528817077286,
     completed: false,
   },
   {
-    task: "Bake Cookies",
+    task: "Move bottle/can returns to storage locker",
     id: 1528817084358,
     completed: false,
+  },
+  {
+    task: "Stretch, persist data in window.localStorage",
+    id: 1528817084357,
+    completed: false
   },
 ];
 
@@ -72,6 +77,21 @@ class App extends React.Component {
       list: this.state.list.filter( ( todo ) => !todo.completed ),
     } );
   };
+
+
+  // _____________ Persist data and store locally  ______________ //
+
+  componentDidMount () {
+    // this.setState using JSON.parse accessing local storage.getItem using key 'list'...this changes the JSON string into an object to be rendered//
+    this.setState( JSON.parse( window.localStorage.getItem( 'list' ) ) );
+  }
+
+  componentDidUpdate ( previousState ) {
+    // send back the new object as string to setItem for 'list' //
+    if ( this.state.list !== previousState.list ) {
+      window.localStorage.setItem( 'list', JSON.stringify( this.state ) );
+    }
+  }
 
   // _______________ render / return _______________ //
   render () {

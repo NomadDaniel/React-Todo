@@ -13,7 +13,7 @@ class TodoForm extends React.Component {
 
   onChange = ( e ) => this.setState( { [ e.target.name ]: e.target.value } );
 
-  // ________ Class methods to submit form and clear input afterwards _______ //
+  // _______ Class methods to submit form and clear input afterwards _______ //
   onSubmit = ( e ) => {
     e.preventDefault();
     this.setState( { formValue: "" } );
